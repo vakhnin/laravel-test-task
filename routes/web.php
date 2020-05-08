@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,27 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  $towns = App\Town::orderBy('created_at', 'asc')->get();
+
+  return view('towns', [
+    'towns' => $towns
+  ]);
+});
+
+Route::post('/town', function (Request $request) {
+  $validator = Validator::make($request->all(), [
+    'town' => 'required|max:255',
+  ]);
+
+  if ($validator->fails()) {
+    return redirect('/')
+      ->withInput()
+      ->withErrors($validator);
+  }
+
+  $town = new App\Town;
+  $town->town = $request->town;
+  $town->save();
+
+  return redirect('/');
 });
