@@ -28,7 +28,7 @@
                         <!-- Add Town Button -->
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-6">
-                                <button type="submit" class="btn btn-default">
+                                <button type="button" class="btn btn-default"  onClick="getMessage();">
                                     <i class="fa fa-btn fa-plus"></i>Add Town
                                 </button>
                             </div>
@@ -54,18 +54,6 @@
                                 @foreach ($towns as $town)
                                     <tr>
                                         <td class="table-text"><div>{{ $town->town }}</div></td>
-
-                                        <!-- Town Delete Button -->
-                                        <td>
-                                            <form action="{{ url('town/'.$town->id) }}" method="POST">
-                                                {{ csrf_field() }}
-                                                {{ method_field('DELETE') }}
-
-                                                <button type="submit" class="btn btn-danger">
-                                                    <i class="fa fa-btn fa-trash"></i>Delete
-                                                </button>
-                                            </form>
-                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -75,4 +63,24 @@
             @endif
         </div>
     </div>
+		
+    <script>
+        function getMessage() {
+            $.ajax({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),					
+					'XSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+                type: 'POST',
+                url: 'ajax',
+                data: {
+					"town_name": $("#town-name").val()
+				},
+                success: function(data) {
+                    $("#msg").html(data.msg);
+                }
+            });
+        }
+
+    </script>
 @endsection

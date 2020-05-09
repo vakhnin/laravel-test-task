@@ -22,9 +22,9 @@ Route::get('/', function () {
   ]);
 });
 
-Route::post('/town', function (Request $request) {
+Route::post('/ajax',function (Request $request) {
   $validator = Validator::make($request->all(), [
-    'town' => 'required|max:255',
+    'town_name' => 'required|max:255',
   ]);
 
   if ($validator->fails()) {
@@ -34,8 +34,8 @@ Route::post('/town', function (Request $request) {
   }
 
   $town = new App\Town;
-  $town->town = $request->town;
+  $town->town = $request->town_name;
   $town->save();
 
-  return redirect('/');
+  return response()->json(array('msg'=> $request->town_name), 200);
 });
