@@ -23,15 +23,9 @@ Route::get('/', function () {
 });
 
 Route::post('/ajax',function (Request $request) {
-  $validator = Validator::make($request->all(), [
-    'town_name' => 'required|max:255',
-  ]);
-
-  if ($validator->fails()) {
-    return redirect('/')
-      ->withInput()
-      ->withErrors($validator);
-  }
+  $validatedData = $request->validate([
+    'town_name' => 'required|max:255'
+    ]);
 
   $town = new App\Town;
   $town->town = $request->town_name;
