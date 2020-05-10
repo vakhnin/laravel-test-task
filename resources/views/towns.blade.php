@@ -21,10 +21,31 @@
 
                     <!-- Town Name -->
                     <div class="form-group">
-                        <label for="town-name" class="col-sm-3 control-label">Town</label>
+                        <label for="town-name" class="col-sm-4 control-label">Название населенного пункта</label>
 
                         <div class="col-sm-6">
                             <input type="text" name="town" id="town-name" class="form-control" value="{{ old('town') }}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="town-population" class="col-sm-4 control-label">Население</label>
+
+                        <div class="col-sm-6">
+                            <input type="text" name="population" id="town-population" class="form-control" value="{{ old('population') }}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="town-lat" class="col-sm-4 control-label">Широта</label>
+
+                        <div class="col-sm-6">
+                            <input type="text" name="lat" id="town-lat" class="form-control" value="{{ old('lat') }}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="town-lon" class="col-sm-4 control-label">Долгота</label>
+
+                        <div class="col-sm-6">
+                            <input type="text" name="lon" id="town-lon" class="form-control" value="{{ old('lon') }}">
                         </div>
                     </div>
 
@@ -57,7 +78,28 @@
                         @foreach ($towns as $town)
                         <tr>
                             <td class="table-text">
-                                <div>{{ $town->town }}</div>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <div>{{ $town->town }}</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>{{ $town->population }}</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>{{ $town->lat }}</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>{{ $town->lon }}</div>
+                                        </td>
+                                    </tr>
+                                </table>
                             </td>
                         </tr>
                         @endforeach
@@ -81,7 +123,10 @@
             type: 'POST',
             url: 'ajax',
             data: {
-                "town_name": $("#town-name").val()
+                "town_name": $("#town-name").val(),
+                "town_population": $("#town-population").val(),
+                "town_lat": $("#town-lat").val(),
+                "town_lon": $("#town-lon").val()
             },
             success: function(data) {
                 $('#alert-success').show();

@@ -24,11 +24,17 @@ Route::get('/', function () {
 
 Route::post('/ajax',function (Request $request) {
   $validatedData = $request->validate([
-    'town_name' => 'required|max:255'
+    'town_name' => 'required|max:70',
+    'town_population' => 'required|integer|min:0',
+    'town_lat' => 'required|numeric|min:-90|max:90',
+    'town_lon' => 'required|numeric|min:-180|max:180',
     ]);
 
   $town = new App\Town;
   $town->town = $request->town_name;
+  $town->population = $request->town_population;
+  $town->lat = $request->town_lat;
+  $town->lon = $request->town_lon;
   $town->save();
 
   return response()->json(array('msg'=> $request->town_name), 200);
