@@ -5,7 +5,7 @@
     <div class="col-sm-offset-2 col-sm-8">
         <div class="panel panel-default">
             <div class="panel-heading">
-                New Town
+                Новый населенный пункт
             </div>
 
             <div class="panel-body">
@@ -65,41 +65,31 @@
         @if (count($towns) > 0)
         <div class="panel panel-default">
             <div class="panel-heading">
-                Current Towns
+                Список населенных пунктов
             </div>
 
             <div class="panel-body">
                 <table class="table table-striped town-table">
                     <thead>
-                        <th>Town</th>
-                        <th>&nbsp;</th>
+                        <th>Название</th>
+                        <th>Население</th>
+                        <th>Широта</th>
+                        <th>Долгота</th>
                     </thead>
                     <tbody>
                         @foreach ($towns as $town)
                         <tr>
                             <td class="table-text">
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <div>{{ $town->town }}</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div>{{ $town->population }}</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div>{{ $town->lat }}</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div>{{ $town->lon }}</div>
-                                        </td>
-                                    </tr>
-                                </table>
+                                <div>{{ $town->town }}</div>
+                            </td>
+                            <td class="table-text">
+                                <div>{{ $town->population }}</div>
+                            </td>
+                            <td class="table-text">
+                                <div>{{ $town->lat }}</div>
+                            </td>
+                            <td class="table-text">
+                                <div>{{ $town->lon }}</div>
                             </td>
                         </tr>
                         @endforeach
