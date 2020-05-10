@@ -24,7 +24,7 @@
                         <label for="town-name" class="col-sm-4 control-label">Название населенного пункта</label>
 
                         <div class="col-sm-6">
-                            <input type="text" name="town" id="town-name" class="form-control" value="{{ old('town') }}">
+                            <input type="text" name="town-name" id="town-name" class="form-control" value="{{ old('town-name') }}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -80,7 +80,7 @@
                         @foreach ($towns as $town)
                         <tr>
                             <td class="table-text">
-                                <div>{{ $town->town }}</div>
+                                <div>{{ $town->town_name }}</div>
                             </td>
                             <td class="table-text">
                                 <div>{{ $town->population }}</div>

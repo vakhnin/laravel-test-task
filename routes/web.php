@@ -31,7 +31,7 @@ Route::post('/ajax',function (Request $request) {
     ]);
 
   $town = new App\Town;
-  $town->town = $request->town_name;
+  $town->town_name = $request->town_name;
   $town->population = $request->town_population;
   $town->lat = $request->town_lat;
   $town->lon = $request->town_lon;
