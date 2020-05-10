@@ -53,7 +53,7 @@
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-6">
                             <button type="button" class="btn btn-default" onClick="getMessage();">
-                                <i class="fa fa-btn fa-plus"></i>Add Town
+                                <i class="fa fa-btn fa-plus"></i>Добавить населенный пункт
                             </button>
                         </div>
                     </div>
